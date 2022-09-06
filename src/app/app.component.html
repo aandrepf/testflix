@@ -1,0 +1,25 @@
+<header class="header">
+  <img src="{{ logo }}" alt="testflix logo" height="130px" />
+  <p class="menu" (click)="openOrCloseMenu()">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </p>
+</header>
+<section
+  class="open-filters collapsible"
+  [@expandCollapse]="openCloseAnimation"
+>
+  <p (click)="closeFilters()" *ngIf="changeBtn; else openFilter">
+    Close Filters
+  </p>
+  <ng-template #openFilter>
+    <p (click)="openFilters()">Open Filters</p>
+  </ng-template>
+</section>
+<router-outlet></router-outlet>
+<footer class="footer">
+  <div *ngFor="let link of links">
+    <a class="button" tabindex="0" aria-disabled="false" href="{{ link.href }}"
+      ><span class="MuiButton-label">{{ link.text }}</span></a
+    >
+  </div>
+</footer>

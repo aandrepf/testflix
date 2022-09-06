@@ -1,0 +1,70 @@
+<section *ngIf="movies$ | async">
+  <div class="row movie-row">
+    <div
+      *ngFor="let movieCard of movies$ | async; let index = mi"
+      class="col-md-6 col-sm-12 col-lg-4 col-xl-3"
+    >
+      <div class="card movie-card" style="width: 18rem;">
+        <div
+          class="card-body {{
+            setBackground(movieCard.Watched, movieCard.Saved)
+          }}"
+        >
+          <div class="card-title">
+            <p class="m-0 text-left">
+              <i
+                class="fa fa-{{
+                  movieCard.Watched === 'True' ? 'eye' : 'eye-slash'
+                }}"
+                aria-hidden="true"
+                (click)="
+                  setMovieStatus(
+                    $event.target.className,
+                    movieCard.Watched,
+                    movieCard.Saved,
+                    movieCard.imdbID
+                  )
+                "
+              ></i>
+            </p>
+            <p class="m-0 text-right">
+              <i
+                class="fa fa-{{
+                  movieCard.Saved === 'True' ? 'heart' : 'heart-o'
+                }}"
+                aria-hidden="true"
+                (click)="
+                  setMovieStatus(
+                    $event.target.className,
+                    movieCard.Watched,
+                    movieCard.Saved,
+                    movieCard.imdbID
+                  )
+                "
+              ></i>
+            </p>
+          </div>
+          <div class="card-subtitle mb-2 text-muted">
+            <img
+              src="{{ movieCard.Poster }}"
+              alt="Film: {{ movieCard.Title }}"
+              title="{{ movieCard.Poster }}"
+              aria-label="Film: {{ movieCard.Title }}"
+              appImgMissing
+            />
+          </div>
+          <p class="card-text movie-rating" #ratingValue>
+            ({{ calculateRating(movieCard.Ratings, starsByRating) }})
+          </p>
+          <div class="star-rating" #starsByRating>
+            <i class="fa fa-star-o" aria-hidden="true"></i
+            ><i class="fa fa-star-o" aria-hidden="true"></i
+            ><i class="fa fa-star-o" aria-hidden="true"></i
+            ><i class="fa fa-star-o" aria-hidden="true"></i
+            ><i class="fa fa-star-o" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

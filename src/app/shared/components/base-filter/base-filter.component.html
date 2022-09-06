@@ -1,0 +1,152 @@
+<!-- MOVIES FILTER -->
+<section *ngIf="movieFilter">
+  <div *ngFor="let movieList of movieFilter.list; let i = index">
+    <label>
+      <strong>{{ movieList.label | uppercase }}</strong>
+    </label>
+    <ul class="movie-inputs" #listInputs>
+      <li
+        *ngFor="let movieInputs of movieList.values; let mli = index"
+        [class]="mli > 1 ? 'not-see-li' : ''"
+      >
+        <!-- CHECKBOX INPUTS -->
+        <div
+          *ngIf="
+            movieInputs.label !== 'No' && movieInputs.label !== 'Yes';
+            else radioType
+          "
+        >
+          <input
+            #filterChecks
+            type="checkbox"
+            name="{{ movieInputs.label.toLowerCase() }}"
+            [value]="movieInputs.label"
+            (click)="
+              checkboxSelection(
+                $event.target.checked,
+                $event.target.value,
+                movieList.label.toLowerCase()
+              )
+            "
+          />
+          <span>{{ movieInputs.label }} ({{ movieInputs.count }})</span>
+        </div>
+
+        <!-- RADIO INPUTS -->
+        <ng-template #radioType>
+          <input
+            #filterRadios
+            type="radio"
+            name="{{ movieInputs.label.toLowerCase }}"
+            id="radio-{{ li }}"
+            [value]="movieInputs.label"
+            (click)="
+              radioSelection(
+                $event.target.checked,
+                $event.target.value,
+                movieList.label.toLowerCase()
+              )
+            "
+          />
+          <span>{{ movieInputs.label }} ({{ movieInputs.count }})</span>
+        </ng-template>
+      </li>
+    </ul>
+    <div *ngIf="movieList.values.length > 4">
+      <p
+        #seeMoreButton
+        id="see-more-{{ i }}"
+        class="see-more"
+        (click)="seeMore(seeMoreButton, i)"
+      >
+        <i class="fa fa-angle-down" aria-hidden="true"></i> See more
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ACTORS FILTER-->
+<section *ngIf="actorFilter">
+  <label>
+    <strong>{{ actorFilter.label | uppercase }}</strong>
+  </label>
+  <ul
+    class="movie-inputs"
+    #listDefaultInputs
+    [attr.data-type]="actorFilter.label.toLowerCase()"
+  >
+    <li
+      *ngFor="let actorInputs of actorFilter.list; let ali = index"
+      [class]="ali > 1 ? 'not-see-li' : ''"
+    >
+      <input
+        #filterChecks
+        type="checkbox"
+        name="{{ actorInputs.label.toLowerCase() }}"
+        [value]="actorInputs.label | capitalizer"
+        (click)="
+          checkboxSelection(
+            $event.target.checked,
+            $event.target.value,
+            actorFilter.label.toLowerCase()
+          )
+        "
+      />
+      <span>{{ actorInputs.label }} ({{ actorInputs.count }})</span>
+    </li>
+  </ul>
+  <div *ngIf="actorFilter.list.length > 4">
+    <p
+      #seeMoreButton
+      id="see-more-{{ 0 }}"
+      class="see-more"
+      (click)="seeMoreDefault(seeMoreButton, actorFilter.label.toLowerCase())"
+    >
+      <i class="fa fa-angle-down" aria-hidden="true"></i> See more
+    </p>
+  </div>
+</section>
+
+<!-- DIRECTRORS FILTER-->
+<section *ngIf="directorFilter">
+  <label>
+    <strong>{{ directorFilter.label | uppercase }}</strong>
+  </label>
+  <ul
+    class="movie-inputs"
+    #listDefaultInputs
+    [attr.data-type]="directorFilter.label.toLowerCase()"
+  >
+    <li
+      *ngFor="let directorsInput of directorFilter.list; let ali = index"
+      [class]="ali > 1 ? 'not-see-li' : ''"
+    >
+      <input
+        #filterChecks
+        type="checkbox"
+        name="{{ directorsInput.label.toLowerCase() }}"
+        [value]="directorsInput.label | capitalizer"
+        (click)="
+          checkboxSelection(
+            $event.target.checked,
+            $event.target.value,
+            directorFilter.label.toLowerCase()
+          )
+        "
+      />
+      <span>{{ directorsInput.label }} ({{ directorsInput.count }})</span>
+    </li>
+  </ul>
+  <div *ngIf="directorFilter.list.length > 4">
+    <p
+      #seeMoreButton
+      id="see-more-{{ 0 }}"
+      class="see-more"
+      (click)="
+        seeMoreDefault(seeMoreButton, directorFilter.label.toLowerCase())
+      "
+    >
+      <i class="fa fa-angle-down" aria-hidden="true"></i> See more
+    </p>
+  </div>
+</section>

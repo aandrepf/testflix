@@ -1,0 +1,31 @@
+<ngx-ui-loader
+  [text]="config.text"
+  [fgsColor]="config.fgsColor"
+  [bgsOpacity]="config.bgsColor"
+  [bgsType]="config.bgsType"
+></ngx-ui-loader>
+<div NgxUiLoaderBlurred>
+  <section class="text-center w-100 mt-4 mb-4">
+    <p class="h4">
+      <strong
+        >Movies <span>({{ moviesQuantity$ | async }})</span></strong
+      >
+    </p>
+  </section>
+  <div class="main-wpr mb-4">
+    <aside
+      class="facets-wpr collapsible"
+      [@slide_in_out]="filterOnOff$ | async"
+    >
+      <mono-nx-test-with-nextjs-movies-filters
+        (movieFilterToUse)="generateMovieList($event)"
+      ></mono-nx-test-with-nextjs-movies-filters>
+    </aside>
+
+    <section class="movies-wpr">
+      <mono-nx-test-with-nextjs-movies-list></mono-nx-test-with-nextjs-movies-list>
+    </section>
+  </div>
+</div>
+
+<!-- col-md-{{ (filterOnOff$ | async) ? '8' : '12' }} -->

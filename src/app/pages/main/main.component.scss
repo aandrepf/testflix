@@ -1,0 +1,56 @@
+.h4 {
+  margin: 0;
+
+  span {
+    font-size: 0.95rem !important;
+    vertical-align: 15%;
+  }
+}
+
+.h5 {
+  font-size: 1.25rem;
+  margin: 20px 0;
+}
+
+.main-wpr {
+  display: flex;
+  flex-wrap: wrap;
+  //flex-direction: row;
+}
+
+.facets-wpr {
+  background-color: #455a64;
+  // border-radius: 20px;
+  color: #fff;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  height: 100%;
+  max-width: 232px;
+  box-sizing: border-box;
+  flex: 1;
+
+  div:nth-child(1) > p.h5 {
+    display: none; // none
+  }
+}
+
+.movies-wpr {
+  flex: 1;
+  flex-direction: row;
+  // padding: 0 0px 0 40px;
+}
+
+.checkNotMovies {
+  width: 18px;
+  height: 18px;
+
+  + label {
+    margin-left: 5px;
+    vertical-align: middle;
+    font-size: 1.13rem;
+  }
+}
+
+.collapsible {
+  overflow: hidden;
+}

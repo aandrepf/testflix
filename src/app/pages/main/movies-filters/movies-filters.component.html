@@ -1,0 +1,15 @@
+<div class="rest-filter" (click)="reset()">
+  <p>Reset Filters</p>
+</div>
+
+<!-- MOVIES FILTER -->
+<section class="filters-wpr">
+  <mono-nx-test-with-nextjs-base-filter
+    [movieFilter]="movieFilter$ | async"
+    [actorFilter]="actorsFilter$ | async"
+    [directorFilter]="directorsFilter$ | async"
+    [resetFilter]="resetAllFilters"
+    (resetBase)="resetFilters($event)"
+    (sendFilter)="receiveFilter($event)"
+  ></mono-nx-test-with-nextjs-base-filter>
+</section>

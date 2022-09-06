@@ -1,0 +1,28 @@
+section.open-filters {
+  background-color: #455a64;
+  padding: 15px 0px;
+  text-align: center;
+  box-sizing: border-box;
+  // border-left: 50px solid transparent;
+  // border-right: 50px solid transparent;
+  // border-top: 50px solid green;
+
+  p {
+    font-size: 1.05rem;
+    color: #000;
+    margin: 0 auto;
+    background: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 0px;
+    box-shadow: -1px 3px 5px #000;
+    text-align: center;
+    cursor: pointer;
+    // width: 202px;
+    font-weight: bold;
+  }
+}
+
+.collapsible {
+  overflow: hidden;
+}
